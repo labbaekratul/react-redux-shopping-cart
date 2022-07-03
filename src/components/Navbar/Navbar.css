@@ -1,0 +1,13 @@
+.Navbar {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.cart {
+  cursor: pointer;
+}
+
+.cart:hover {
+  color: rgb(108, 126, 126);
+}
