@@ -2,11 +2,18 @@ import React from "react";
 import "./Cart.css";
 import { Container } from "@mui/material";
 import Navbar from "../../components/Navbar/Navbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { removeFromCart } from "../../app/features/cart/cartSlice";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
+  const removeItem = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
   return (
     <Container maxWidth="xl">
@@ -19,13 +26,13 @@ const Cart = () => {
           <div className="col-md-9 col-sm-12 item-col">
             <div className="item-area">
               {cart.map((item) => (
-                <div className="single-product" key={item.cart.id}>
+                <div className="single-product" key={item.id}>
                   <div className="product-img">
-                    <img src={item.cart.image} alt={item.name} />
-                    <small>{item.cart.title}</small>
+                    <img src={item.image} alt={item.name} />
+                    <small>{item.title.substr(0, 25)}</small>
                   </div>
                   <div>
-                    <button>Remove</button>
+                    <button onClick={() => removeItem(item.id)}>Remove</button>
                   </div>
                   <div className="common">
                     <span>Quntity</span>
@@ -37,7 +44,9 @@ const Cart = () => {
                   </div>
                   <div className="common">
                     <span>Total</span>
-                    <strong>{item.cart.price}</strong>
+                    <strong>
+                      1*{item.price} = {item.price}
+                    </strong>
                   </div>
                 </div>
               ))}

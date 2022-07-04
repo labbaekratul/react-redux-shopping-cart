@@ -24,7 +24,7 @@
 .product-img {
   height: 120px;
   display: flex;
-  width: 500px;
+  width: 400px;
   justify-content: space-between;
 }
 
